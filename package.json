@@ -1,0 +1,25 @@
+{
+  "name": "kreg",
+  "version": "1.0.0",
+  "description": "Registration system",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YurySosnov/kreg.git"
+  },
+  "author": "Yury Sosnov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YurySosnov/kreg/issues"
+  },
+  "homepage": "https://github.com/YurySosnov/kreg#readme",
+  "dependencies": {
+    "apollo-server-express": "^2.18.2",
+    "express": "^4.17.1",
+    "graphql": "^15.4.0",
+    "moment": "^2.29.1"
+  }
+}
