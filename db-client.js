@@ -104,10 +104,9 @@ const checkUserExist = async ({id, login, email}) => {
     }
 };
 
-const register = async ({login, password, email}) => {
+const register = async ({login, email, password}) => {
     try {
         const hash = await hashPassword(password);
-        console.log(hash);
         const result = await pool.query(
             "INSERT INTO users (login, password, email) values ($1, $2, $3)",
             [login, hash, email]

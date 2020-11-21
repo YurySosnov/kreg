@@ -26,7 +26,10 @@ app.post('/auth', async (req, res) => {
        const {login, password} = req.body;
        await client.auth({login, password}, req.headers)
            .then(token => {
-               res.send(token);
+               res.send({
+                   code: 'token',
+                   token
+               });
            })
            .catch(err => {
                console.error(err);
@@ -38,7 +41,13 @@ app.post('/auth', async (req, res) => {
 
 app.post('/register', async (req, res) => {
    try {
-       const {login, password, email} = req.body;
+       const {login, email, password, confirmPassword} = req.body;
+       if (password !== confirmPassword) {
+           res.json({
+               code: 'passwordConfirmationError',
+               message: 'password confirm is wrong'
+           });
+       }
        const emailAlreadyExist = await client.checkEmail(email);
        const loginAlreadyExist = await client.checkLogin(login);
 
@@ -55,6 +64,7 @@ app.post('/register', async (req, res) => {
            }
        } else {
            res.json({
+               code: 'userAlreadyExist',
                message: 'user already exist',
                email: emailAlreadyExist,
                login: loginAlreadyExist
